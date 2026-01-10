@@ -1,83 +1,62 @@
 # Project UMA
 
-# 📅 Roadmap & Progress Tracking
+## 📅 Project Roadmap (KDD Lifecycle)
 
-### ✅ Fase 1: Data Preparation & Cleaning (Hari 1-3)
-*Fokus: Mengubah raw data berbahasa Jepang menjadi format tabular yang bersih dan siap olah.*
+### 1️⃣ Selection (Seleksi Data) - Hari 1
+*Target: Memilih subset data yang relevan dari sekumpulan data mentah.*
 
-- [x] **Setup Project**
-    - [x] Buat virtual environment & install libraries (`pandas`, `scikit-learn`, `catboost`, `streamlit`).
-    - [x] Struktur folder: `data/raw`, `data/processed`, `notebooks`, `src`.
-- [x] **Data Ingestion (race_result.csv)**
-    - [x] Load CSV ke Pandas DataFrame.
-    - [x] Rename kolom Jepang ke Inggris (Mapping: `着順`->`rank`, `タイム`->`time`, dll).
-    - [x] Filter kolom penting saja, buang kolom administrasi yang kosong.
+- [x] **Setup Environment**
+    - [x] Install libraries & setup struktur folder (`raw`, `processed`, `src`).
+- [x] **Data Ingestion**
+    - [x] Load dataset utama `race_result.csv`.
+    - [x] **Feature Selection Awal:** Memilih kolom-kolom krusial (seperti `rank`, `time`, `horse_name`) dan membuang kolom administrasi yang tidak relevan/kosong.
+
+### 2️⃣ Preprocessing (Pembersihan Data) - Hari 2-3
+*Target: Membersihkan noise dan menangani inkonsistensi untuk meningkatkan kualitas data.*
+
+- [x] **Data Mapping**
+    - [x] Rename header kolom dari Bahasa Jepang ke Bahasa Inggris.
 - [ ] **Data Cleaning**
-    - [ ] Bersihkan kolom `rank`: Hapus data non-integer (seperti "Batal/Gagal").
-    - [ ] Konversi kolom `date` ke format datetime.
-    - [ ] Handling Missing Values (Imputasi atau Drop).
-- [ ] **Feature Engineering Dasar**
-    - [ ] Konversi `time` (1:34.3) menjadi detik (94.3 detik).
-    - [ ] Encoding Label untuk data kategorikal (`venue`, `weather`, `surface`).
-- [ ] **Finalisasi Data**
-    - [ ] Sort data berdasarkan tanggal.
-    - [ ] Simpan sebagai `data/processed/master_data_v1.csv`.
+    - [ ] **Noise Removal:** Hapus baris dengan `rank` non-integer (misal: "Batal/Gagal Finish").
+    - [ ] **Type Conversion:** Perbaiki format data (misal: `date` menjadi datetime).
+    - [ ] **Handling Missing Values:** Strategi imputasi atau penghapusan data kosong (NaN).
 
-### ⛏️ Fase 2: Mining & Feature Enrichment (Hari 4-6)
-*Fokus: Membuat fitur tambahan cerdas untuk meningkatkan akurasi model.*
+### 3️⃣ Transformation (Transformasi Data) - Hari 4-6
+*Target: Mengubah data menjadi format yang siap dimodelkan (Feature Engineering).*
 
-- [ ] **Running Style Clustering**
-    - [ ] Load `corner_passing_order.csv` (jika ada) atau gunakan data passing dari `race_result`.
-    - [ ] Lakukan K-Means Clustering untuk mengelompokkan gaya lari (Nige, Senkou, Sashi, Oikomi).
-    - [ ] Gabungkan (Merge) hasil cluster ke `master_data_v1.csv`.
-- [ ] **History Features (Time Series)**
-    - [ ] Buat fitur `last_5_race_avg_rank`: Rata-rata peringkat di 5 balapan terakhir.
-    - [ ] Buat fitur `days_since_last_race`: Selisih hari dari balapan sebelumnya.
-- [ ] **Jockey/Trainer Synergy**
-    - [ ] (Opsional) Hitung Win Rate historis untuk setiap Joki dan Trainer sebelum tanggal balapan.
+- [ ] **Feature Construction**
+    - [ ] Konversi `race_time` (string "1:34.3") menjadi numerik detik (float 94.3).
+    - [ ] Hitung fitur baru: `days_since_last_race` (selisih hari antar balapan).
+- [ ] **Encoding**
+    - [ ] Ubah data kategorikal (`venue`, `weather`, `surface`) menjadi format numerik (Label/One-Hot Encoding).
+- [ ] **Aggregasi & Derivasi (Advanced Features)**
+    - [ ] **History Profiling:** Buat fitur rata-rata performa 5 balapan terakhir (`last_5_avg_rank`).
+    - [ ] **Clustering (sebagai Fitur):** Kelompokkan gaya lari kuda (Nige/Senkou) menggunakan K-Means dan simpan sebagai kolom fitur baru.
 
-### 🧠 Fase 3: Predictive Modeling (Hari 7-10)
-*Fokus: Melatih dan validasi model Machine Learning.*
+### 4️⃣ Data Mining (Penambangan Data) - Hari 7-10
+*Target: Menerapkan algoritma cerdas untuk mengekstrak pola tersembunyi.*
 
 - [ ] **Data Splitting**
-    - [ ] Time-Series Split: Train (Data lama) vs Validation (Data tahun terakhir). *Jangan di-shuffle!*
-- [ ] **Model Training (Baseline)**
-    - [ ] Latih model sederhana (Logistic Regression) sebagai benchmark.
-- [ ] **Model Training (Advanced)**
-    - [ ] Implementasi **CatBoost** atau **LightGBM**.
-    - [ ] Tuning Hyperparameter dasar (Learning rate, depth).
-- [ ] **Evaluation**
-    - [ ] Cek metrik AUC-ROC (kemampuan membedakan menang/kalah).
-    - [ ] Cek Confusion Matrix.
-    - [ ] Simpan model terbaik (`model.cbm` atau `.pkl`).
+    - [ ] Pisahkan data Training dan Validation menggunakan metode **Time-Series Split** (bukan acak) untuk mencegah kebocoran data masa depan.
+- [ ] **Modeling**
+    - [ ] **Baseline:** Latih model sederhana (Logistic Regression) sebagai tolak ukur.
+    - [ ] **Core Algorithm:** Implementasi algoritma Gradient Boosting (**CatBoost** atau **LightGBM**) untuk klasifikasi kemenangan (Win/Lose).
+- [ ] **Pattern Extraction**
+    - [ ] Latih model untuk mengenali pola kombinasi fitur (misal: Kuda tipe X + Joki Y di Lintasan Z).
 
-### 💰 Fase 4: Betting Strategy Simulation (Hari 11)
-*Fokus: Menguji apakah model bisa menghasilkan profit secara teoritis.*
+### 5️⃣ Interpretation/Evaluation (Evaluasi & Interpretasi) - Hari 11-14
+*Target: Menerjemahkan pola yang ditemukan menjadi pengetahuan dan keputusan bisnis.*
 
-- [ ] **Simulasi Backtesting**
-    - [ ] Gunakan data Validation (Data yang belum dilihat model).
-    - [ ] Bandingkan Prediksi Model vs Odds Pasar.
-    - [ ] Hitung EV (Expected Value).
-- [ ] **Analisis ROI**
-    - [ ] Hitung total profit/loss jika bertaruh flat (misal 100 yen) pada setiap rekomendasi model.
-
-### 🚀 Fase 5: Dashboard & Deployment (Hari 12-14)
-*Fokus: Membuat antarmuka pengguna sederhana untuk demo.*
-
-- [ ] **Backend Script**
-    - [ ] Buat fungsi `predict_race(race_data)` yang memuat model tersimpan.
-- [ ] **Frontend (Streamlit)**
-    - [ ] Buat UI untuk upload data race baru (CSV) atau input manual.
-    - [ ] Tampilkan tabel hasil prediksi (Nama Kuda | Probabilitas Menang | Rekomendasi).
-    - [ ] Visualisasi grafik sederhana (Scatter plot performa).
-- [ ] **Final Review**
-    - [ ] Dokumentasi singkat cara menjalankan aplikasi.
-    - [ ] Rekap hasil proyek.
+- [ ] **Model Evaluation**
+    - [ ] Evaluasi teknis menggunakan metrik **AUC-ROC** dan **Confusion Matrix**.
+- [ ] **Knowledge Interpretation (Business Logic)**
+    - [ ] **Betting Simulation:** Menerapkan hasil prediksi pada data validasi untuk menghitung potensi ROI (Return on Investment).
+    - [ ] Analisis **Value Bet** (Membandingkan probabilitas model vs odds pasar).
+- [ ] **Knowledge Representation (Deployment)**
+    - [ ] Membangun Dashboard **Streamlit** untuk memvisualisasikan hasil prediksi agar mudah dipahami pengguna.
 
 ---
 
 ## 📝 Catatan Harian
-*(Gunakan bagian ini untuk mencatat kendala atau ide baru)*
-
 - **Hari 1:** ...
 - **Hari 2:** ...
