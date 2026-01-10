@@ -16,16 +16,16 @@
 
 - [x] **Data Mapping**
     - [x] Rename header kolom dari Bahasa Jepang ke Bahasa Inggris.
-- [ ] **Data Cleaning**
-    - [ ] **Noise Removal:** Hapus baris dengan `rank` non-integer (misal: "Batal/Gagal Finish").
-    - [ ] **Type Conversion:** Perbaiki format data (misal: `date` menjadi datetime).
-    - [ ] **Handling Missing Values:** Strategi imputasi atau penghapusan data kosong (NaN).
+- [x] **Data Cleaning**
+    - [x] **Noise Removal:** Hapus baris dengan `rank` non-integer (misal: "Batal/Gagal Finish").
+    - [x] **Type Conversion:** Perbaiki format data (misal: `date` menjadi datetime).
+    - [x] **Handling Missing Values:** Strategi imputasi atau penghapusan data kosong (NaN).
 
 ### 3️⃣ Transformation (Transformasi Data) - Hari 4-6
 *Target: Mengubah data menjadi format yang siap dimodelkan (Feature Engineering).*
 
 - [ ] **Feature Construction**
-    - [ ] Konversi `race_time` (string "1:34.3") menjadi numerik detik (float 94.3).
+    - [x] Konversi `race_time` (string "1:34.3") menjadi numerik detik (float 94.3).
     - [ ] Hitung fitur baru: `days_since_last_race` (selisih hari antar balapan).
 - [ ] **Encoding**
     - [ ] Ubah data kategorikal (`venue`, `weather`, `surface`) menjadi format numerik (Label/One-Hot Encoding).
