@@ -27,11 +27,11 @@
 - [ ] **Feature Construction**
     - [x] Konversi `race_time` (string "1:34.3") menjadi numerik detik (float 94.3).
     - [ ] Hitung fitur baru: `days_since_last_race` (selisih hari antar balapan).
-- [ ] **Encoding**
-    - [ ] Ubah data kategorikal (`venue`, `weather`, `surface`) menjadi format numerik (Label/One-Hot Encoding).
-- [ ] **Aggregasi & Derivasi (Advanced Features)**
-    - [ ] **History Profiling:** Buat fitur rata-rata performa 5 balapan terakhir (`last_5_avg_rank`).
-    - [ ] **Clustering (sebagai Fitur):** Kelompokkan gaya lari kuda (Nige/Senkou) menggunakan K-Means dan simpan sebagai kolom fitur baru.
+- [x] **Encoding**
+    - [x] Ubah data kategorikal (`venue`, `weather`, `surface`) menjadi format numerik (Label/One-Hot Encoding).
+- [x] **Aggregasi & Derivasi (Advanced Features)**
+    - [x] **History Profiling:** Buat fitur rata-rata performa 3 balapan terakhir (`last_3_avg_rank`).
+    - [x] **Clustering (sebagai Fitur):** Kelompokkan gaya lari kuda (Nige/Senkou) menggunakan K-Means dan simpan sebagai kolom fitur baru.
 
 ### 4️⃣ Data Mining (Penambangan Data) - Hari 7-10
 *Target: Menerapkan algoritma cerdas untuk mengekstrak pola tersembunyi.*
