@@ -36,22 +36,22 @@
 ### 4️⃣ Data Mining (Penambangan Data) - Hari 7-10
 *Target: Menerapkan algoritma cerdas untuk mengekstrak pola tersembunyi.*
 
-- [ ] **Data Splitting**
-    - [ ] Pisahkan data Training dan Validation menggunakan metode **Time-Series Split** (bukan acak) untuk mencegah kebocoran data masa depan.
-- [ ] **Modeling**
+- [x] **Data Splitting**
+    - [x] Pisahkan data Training dan Validation menggunakan metode **Time-Series Split** (bukan acak) untuk mencegah kebocoran data masa depan.
+- [x] **Modeling**
     - [ ] **Baseline:** Latih model sederhana (Logistic Regression) sebagai tolak ukur.
-    - [ ] **Core Algorithm:** Implementasi algoritma Gradient Boosting (**CatBoost** atau **LightGBM**) untuk klasifikasi kemenangan (Win/Lose).
-- [ ] **Pattern Extraction**
-    - [ ] Latih model untuk mengenali pola kombinasi fitur (misal: Kuda tipe X + Joki Y di Lintasan Z).
+    - [x] **Core Algorithm:** Implementasi algoritma Gradient Boosting (**CatBoost** atau **LightGBM**) untuk klasifikasi kemenangan (Win/Lose).
+- [x] **Pattern Extraction**
+    - [x] Latih model untuk mengenali pola kombinasi fitur (misal: Kuda tipe X + Joki Y di Lintasan Z).
 
 ### 5️⃣ Interpretation/Evaluation (Evaluasi & Interpretasi) - Hari 11-14
 *Target: Menerjemahkan pola yang ditemukan menjadi pengetahuan dan keputusan bisnis.*
 
-- [ ] **Model Evaluation**
-    - [ ] Evaluasi teknis menggunakan metrik **AUC-ROC** dan **Confusion Matrix**.
-- [ ] **Knowledge Interpretation (Business Logic)**
-    - [ ] **Betting Simulation:** Menerapkan hasil prediksi pada data validasi untuk menghitung potensi ROI (Return on Investment).
-    - [ ] Analisis **Value Bet** (Membandingkan probabilitas model vs odds pasar).
+- [x] **Model Evaluation**
+    - [x] Evaluasi teknis menggunakan metrik **AUC-ROC** dan **Confusion Matrix**.
+- [x] **Knowledge Interpretation (Business Logic)**
+    - [x] **Betting Simulation:** Menerapkan hasil prediksi pada data validasi untuk menghitung potensi ROI (Return on Investment).
+    - [x] Analisis **Value Bet** (Membandingkan probabilitas model vs odds pasar).
 - [ ] **Knowledge Representation (Deployment)**
     - [ ] Membangun Dashboard **Streamlit** untuk memvisualisasikan hasil prediksi agar mudah dipahami pengguna.
 
