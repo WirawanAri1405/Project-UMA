@@ -3,3 +3,5 @@ data/
 .DS_Store
 __pycache__/
 notebooks/catboost_info
+notebooks/trained_models_reg
+notebooks/trained_models
