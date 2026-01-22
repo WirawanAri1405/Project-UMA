@@ -5,3 +5,6 @@ __pycache__/
 notebooks/catboost_info
 notebooks/trained_models_reg
 notebooks/trained_models
+notebooks/03_Regression_Modeling.ipynb
+notebooks/03_class_modeling.ipynb
+notebooks/04_evaluation.ipynb
